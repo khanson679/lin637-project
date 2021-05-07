@@ -55,19 +55,21 @@ class TreeBDFA:
                    and nextstate in self.states
                    for (state_list, symbol), nextstate in self.transitions.items())
 
-    def _process(self, subtree):
+    def _process(self, subtree, debug=False):
         """Return the state reached by processing the given tree, if any,
         None otherwise."""
         if len(subtree.children) == 0:
             statelist = ()
         else:
             statelist = tuple(self._process(c) for c in subtree.children)
+        if debug:
+            print(statelist)
         return self.transitions.get((statelist, subtree.data), None)
 
-    def recognizes(self, tree):
+    def recognizes(self, tree, debug=False):
         """Processes a tree and returns True if a final state is reached,
         False otherwise."""
-        return self._process(tree) in self.finals
+        return self._process(tree, debug) in self.finals
 
 
 def test():
