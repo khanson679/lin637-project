@@ -58,23 +58,23 @@ def test_mini():
 
 
 def test_gb():
-    t1 = Tree.from_list(["NP", ["N'", ["N"]]])
+    t1 = Tree.from_list(["NP", ["N'", "N"]])
     t2 = Tree.from_list(["NP",
-                         ["DP", ["D'", ["D"]]],
-                         ["N'", ["N"]]])
+                         ["DP", ["D'", "D"]],
+                         ["N'", "N"]])
     t3 = Tree.from_list(
         ["TP",
             ["NP",
-                ["DP", ["D'", ["D"]]],
-                ["N'", ["N"]]],
+                ["DP", ["D'", "D"]],
+                ["N'", "N"]],
             ["T'",
                 ["T"],
                 ["VP",
                     ["V'",
                         ["V"],
                         ["NP",
-                            ["DP", ["D'", ["D"]]],
-                            ["N'", ["N"]]]]]]])
+                            ["DP", ["D'", "D"]],
+                            ["N'", "N"]]]]]])
     for t in [t1, t2, t3]:
         print(gb_grammar)
         print(t)

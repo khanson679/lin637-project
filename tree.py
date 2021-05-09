@@ -18,6 +18,13 @@ class Tree:
 
     @staticmethod
     def from_list(nodes):
+        """
+        Construct tree from list of form [label, child1, child2, ...].
+        Brackets around terminal nodes may be omitted, similar to LISP
+        S-expressions.
+        """
+        if isinstance(nodes, str):
+            nodes = [nodes]
         if len(nodes) < 1:
             raise ValueError("Tree level cannot be empty.")
         elif len(nodes) == 1:
@@ -130,7 +137,7 @@ def test():
     Test Tree class by creating trees for the a^nb^n language of various sizes.
     Print results in tabular format.
     """
-    t = Tree.from_list(['a', ['b', ['c', ['d']], ['e', ['f'], ['g'], ['h'], ['i']]]])
+    t = Tree.from_list(['a', ['b', ['c', 'd'], ['e', 'f', 'g', 'h', 'i']]])
 
     test_trees = [sn(1), sn(4), t]
 
