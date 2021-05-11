@@ -23,7 +23,7 @@ class Tree:
         Brackets around terminal nodes may be omitted, similar to LISP
         S-expressions.
         """
-        if isinstance(nodes, str):
+        if not isinstance(nodes, list):
             nodes = [nodes]
         if len(nodes) < 1:
             raise ValueError("Tree level cannot be empty.")

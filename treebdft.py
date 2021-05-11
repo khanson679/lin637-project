@@ -75,8 +75,8 @@ def test():
     test_trans = {
         ((), 'a'): ('qa', Tree('a')),
         ((), 'b'): ('qb', Tree('b')),
-        (('qa', 'qb'), 'S'): ('qS', Tree('S', [Tree(1), Tree(0)])),
-        (('qa', 'qS', 'qb'), 'S'): ('qS', Tree('S', [Tree(2), Tree(1), Tree(0)]))}
+        (('qa', 'qb'), 'S'): ('qS', Tree.from_list(['S', 1, 0])),
+        (('qa', 'qS', 'qb'), 'S'): ('qS', Tree.from_list(['S', 2, 1, 0]))}
     test_tbdft = TreeBDFT(test_states, test_alph, test_finals, test_trans)
 
     ta = Tree('a')
