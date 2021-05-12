@@ -6,6 +6,7 @@ Definitions of GB and Minimalist tree grammars and transducers.
 
 from tree import Tree
 from treebdfa import TreeBDFA
+import test_trees
 
 #
 # Simple SS-style grammar
@@ -98,46 +99,25 @@ def test_simple():
 
 
 def test_gb():
-    print(gb_grammar)
-    t1 = Tree.from_list(["NP", ["N'", "N"]])
-    t2 = Tree.from_list(["NP",
-                         ["DP", ["D'", "D"]],
-                         ["N'", "N"]])
-    t3 = Tree.from_list(
-        ["TP",
-            ["NP",
-                ["DP", ["D'", "D"]],
-                ["N'", "N"]],
-            ["T'",
-                ["T"],
-                ["VP",
-                    ["V'",
-                        ["V"],
-                        ["NP",
-                            ["DP", ["D'", "D"]],
-                            ["N'", "N"]]]]]])
+    # print(gb_grammar)
+    t1 = test_trees.gb_np_n
+    t2 = test_trees.gb_np_d_n
+    t3 = test_trees.gb_simple_trans_clause
     for t in [t1, t2, t3]:
         print(t)
         print(gb_grammar.recognizes(t))
 
 
 def test_minimalist():
-    print(minimalist_grammar)
-    t1 = Tree.from_list(["DP"])
-    t2 = Tree.from_list(["DP", "D", "NP"])
-    t3 = Tree.from_list(
-        ["TP",
-            ["DP", "D", "NP"],
-            ["T'",
-                ["T"],
-                ["VP",
-                    ["V"],
-                    ["DP", "D", "NP"]]]])
+    # print(minimalist_grammar)
+    t1 = test_trees.min_dp_leaf
+    t2 = test_trees.min_dp_d_n
+    t3 = test_trees.min_simple_trans_clause
     for t in [t1, t2, t3]:
         print(t)
         print(minimalist_grammar.recognizes(t))
 
 
 if __name__ == "__main__":
-    # test_gb()
+    test_gb()
     test_minimalist()
