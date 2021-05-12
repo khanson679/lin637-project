@@ -40,7 +40,7 @@ fs = ["qXP"]
 # A single state "qXP" will be returned upon processing a phrase of any category.
 #   In other words, subcategorization is not modeled.
 ts = []
-for z in "NAVPDTC":
+for z in "NAVPDIC":
     zbar = z + "'"
     zp = z + 'P'
     qz = 'q' + z

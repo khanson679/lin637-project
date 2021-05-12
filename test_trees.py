@@ -6,15 +6,15 @@ gb_np_d_n = Tree.from_list(
         ["DP", ["D'", "D"]],
         ["N'", "N"]])
 gb_simple_trans_clause = Tree.from_list(
-    ["TP",
+    ["IP",
         ["NP",
             ["DP", ["D'", "D"]],
             ["N'", "N"]],
-        ["T'",
-            ["T"],
+        ["I'",
+            "I",
             ["VP",
                 ["V'",
-                    ["V"],
+                    "V",
                     ["NP",
                         ["DP", ["D'", "D"]],
                         ["N'", "N"]]]]]])
