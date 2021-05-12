@@ -54,7 +54,7 @@ class TreeBDFT:
             child_states = ()
             child_trees = ()
         else:
-            child_states_trees = [self._process(c) for c in intree.children]
+            child_states_trees = [self._process(c, debug=debug) for c in intree.children]
             child_states = tuple(state for state, tree in child_states_trees)
             child_trees = tuple(tree for state, tree in child_states_trees)
 

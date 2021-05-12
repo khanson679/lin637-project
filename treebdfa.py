@@ -61,7 +61,7 @@ class TreeBDFA:
         if len(subtree.children) == 0:
             statelist = ()
         else:
-            statelist = tuple(self._process(c) for c in subtree.children)
+            statelist = tuple(self._process(c, debug=debug) for c in subtree.children)
         if debug:
             print(statelist)
         return self.transitions.get((statelist, subtree.data), None)
