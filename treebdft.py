@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
+from pprint import pformat
 from tree import Tree
 
 
@@ -28,6 +29,13 @@ class TreeBDFT:
         self.finals = finals
         self.transitions = transitions
 
+    def __str__(self):
+        return ("<TreeBDFT>\n"
+                f"states: {self.states}\n"
+                f"alphabet: {self.alph}\n"
+                f"finals: {self.finals}\n"
+                f"transitions:\n{pformat(self.transitions)}")
+
     @staticmethod
     def _sub_variables(varleaftree, trees):
         if isinstance(varleaftree.data, int):
@@ -39,7 +47,7 @@ class TreeBDFT:
                         [TreeBDFT._sub_variables(c, trees)
                          for c in varleaftree.children])
 
-    def _process(self, intree):
+    def _process(self, intree, debug=False):
         """Return the current state and output tree for the given input tree,
         if any, else None."""
         if intree.depth == 0:
@@ -50,6 +58,9 @@ class TreeBDFT:
             child_states = tuple(state for state, tree in child_states_trees)
             child_trees = tuple(tree for state, tree in child_states_trees)
 
+        if debug:
+            print(child_states, intree.data)
+
         try:
             next_state, varleaftree = self.transitions[(child_states, intree.data)]
         except KeyError:
@@ -58,10 +69,10 @@ class TreeBDFT:
         outtree = self._sub_variables(varleaftree, child_trees)
         return next_state, outtree
 
-    def transform(self, intree):
+    def transform(self, intree, debug=False):
         """Return the resulting value of processing an input tree if the
         resulting state is a valid final state, else None."""
-        state, outtree = self._process(intree)
+        state, outtree = self._process(intree, debug)
         return outtree if state in self.finals else None
 
 
