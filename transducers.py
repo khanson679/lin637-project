@@ -6,7 +6,7 @@ Definitions of GB and Minimalist tree grammars and transducers.
 
 from tree import Tree
 from treebdft import TreeBDFT
-import test_trees
+import test_trees as tts
 
 alph = {'N', "N'", 'NP'}
 states = {'qXP', 'qN', 'qNbar', 'qNP'}
@@ -32,11 +32,11 @@ trans = {
     (('qI', 'qXP'), "I'"): ('qIbar', Tree(1)),
     (('qIbar',), 'IP'): ('qXP', Tree.from_list(['TP', 'T', 0])),
     (('qXP', 'qIbar'), "IP"): ('qXP', Tree.from_list(['TP', 0, ["T'", 'T', 1]]))}
+
 gb_to_min = TreeBDFT(states, alph, finals, trans)
 
 if __name__ == '__main__':
-    print(gb_to_min)
-    print()
-    print(gb_to_min.transform(test_trees.gb_np_n))
-    print(gb_to_min.transform(test_trees.gb_np_d_n))
-    print(gb_to_min.transform(test_trees.gb_simple_trans_clause, debug=True))
+    for t in [tts.gb_np_n,
+              tts.gb_np_d_n,
+              tts.gb_simple_trans_clause]:
+        print(gb_to_min.transform(t))
