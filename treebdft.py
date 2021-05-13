@@ -20,14 +20,16 @@ class TreeBDFT:
     def __init__(self,
                  states,
                  alphabet,
-                 # initial,
                  finals,
                  transitions):
         self.states = states
         self.alph = alphabet
-        # self.initial = initial
         self.finals = finals
-        self.transitions = transitions
+
+        if type(transitions) in (set, list):
+            self.transitions = self._delta_dict(transitions)
+        elif type(transitions) == dict:
+            self.transitions = transitions
 
     def __str__(self):
         return ("<TreeBDFT>\n"
@@ -35,6 +37,12 @@ class TreeBDFT:
                 f"alphabet: {self.alph}\n"
                 f"finals: {self.finals}\n"
                 f"transitions:\n{pformat(self.transitions)}")
+
+    def _delta_dict(self, transitions):
+        """Convert transition list of form (state_list, symbol, nextstate)
+        to dictionary of form {(state_list, symbol): nextstate}."""
+        return {(tuple(statelist), symbol): (nextstate, varleaftree)
+                for (statelist, symbol, nextstate, varleaftree) in transitions}
 
     @staticmethod
     def _sub_variables(varleaftree, trees):
