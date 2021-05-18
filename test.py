@@ -9,7 +9,10 @@ import unittest
 
 from tree import Tree
 from treebdfa import TreeBDFA
-
+from grammars import gb_grammar, minimalist_grammar
+from transducer_v1 import gb_to_min as gb_to_min_v1
+from transducer_v2 import gb_to_min as gb_to_min_v2
+import test_trees as tts
 
 class TreeTest(unittest.TestCase):
 
@@ -63,6 +66,39 @@ class TreeBDFATest(unittest.TestCase):
         self.assertTrue(anbn.recognizes(t2))
         self.assertTrue(anbn.recognizes(t3))
         self.assertFalse(anbn.recognizes(t3x))
+
+
+class GBToMinGramTransTest(unittest.TestCase):
+
+    def test_gb_grammar(self):
+        self.assertTrue(gb_grammar.recognizes(tts.gb_np_n))
+        self.assertTrue(gb_grammar.recognizes(tts.gb_np_d_n))
+        self.assertTrue(gb_grammar.recognizes(tts.gb_simple_trans_clause))
+        self.assertTrue(gb_grammar.recognizes(tts.gb_pp_comp_cp_comp))
+
+    def test_min_grammar(self):
+        self.assertTrue(minimalist_grammar.recognizes(tts.min_dp_d))
+        self.assertTrue(minimalist_grammar.recognizes(tts.min_dp_d_n))
+        self.assertTrue(minimalist_grammar.recognizes(tts.min_simple_trans_clause))
+        self.assertTrue(minimalist_grammar.recognizes(tts.min_pp_comp_cp_comp))
+
+    def test_gb_to_min_v1(self):
+        self.assertEqual(gb_to_min_v1.transform(tts.gb_np_n),
+                         tts.min_dp_d_n)
+        self.assertEqual(gb_to_min_v1.transform(tts.gb_np_d_n),
+                         tts.min_dp_d_n)
+        self.assertEqual(gb_to_min_v1.transform(tts.gb_simple_trans_clause),
+                         tts.min_simple_trans_clause)
+
+    def test_gb_to_min_v2(self):
+        self.assertEqual(gb_to_min_v2.transform(tts.gb_np_n),
+                         tts.min_dp_d_n)
+        self.assertEqual(gb_to_min_v2.transform(tts.gb_np_d_n),
+                         tts.min_dp_d_n)
+        self.assertEqual(gb_to_min_v2.transform(tts.gb_simple_trans_clause),
+                         tts.min_simple_trans_clause)
+        self.assertEqual(gb_to_min_v2.transform(tts.gb_pp_comp_cp_comp),
+                         tts.min_pp_comp_cp_comp)
 
 
 if __name__ == '__main__':
