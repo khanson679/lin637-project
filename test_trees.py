@@ -50,7 +50,7 @@ min_xp_w_spec_no_comp = Tree.from_list(
      ["ZP", ["Z'", "Z"]],
      ["?'", "?", "XP"]])
 
-min_dp_leaf = Tree.from_list(["DP"])
+min_dp_d = Tree.from_list(["DP"])
 min_dp_d_n = Tree.from_list(["DP", "D", "NP"])
 min_simple_trans_clause = Tree.from_list(
     ["TP",
@@ -60,16 +60,12 @@ min_simple_trans_clause = Tree.from_list(
             ["VP",
                 ["V"],
                 ["DP", "D", "NP"]]]])
-gb_pp_comp_cp_comp = Tree.from_list(
-    ["IP",
-        ["NP",
-            ["DP", ["D'", "D"]],
-            ["N'", "N", ["PP", ["P'", "P", ["NP", ["N'", "N"]]]]]],
-        ["I'", "I",
-            ["VP",
-                ["V'", "V",
-                    ["CP",
-                        ["C'", "C",
-                            ["IP",
-                                ["NP", ["N'", "N"]],
-                                ["I'", "I", ["VP", ["V'", "V"]]]]]]]]]])
+min_pp_comp_cp_comp = Tree.from_list(
+    ["TP",
+        ["DP", "D", ["NP", "N", ["PP", "P", ["DP", "D", "NP"]]]],
+        ["T'", "T",
+            ["VP", "V",
+                ["CP", "C",
+                    ["TP",
+                        ["DP", "D", "NP"],
+                        ["T'", "T", "VP"]]]]]])
