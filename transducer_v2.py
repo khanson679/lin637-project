@@ -75,9 +75,12 @@ states.extend([qd, qdbar, qdp])
 trans.extend([
     ([], d, qd, Tree('')),
     ([qd], dbar, qd, Tree('')),
-    ([qd], dp, qdp, Tree('D')),
-    ([qdp, qn], np, QXP, Tree.from_list([dp, 0, np])),
-    ([qdp, qnbar], np, QXP, Tree.from_list([dp, 0, [np, n, 1]])),
+    ([qd], dp, qdp, Tree('')),
+    ([], n, qn, Tree('')),
+    ([qn], nbar, qn, Tree('')),
+    ([qn], np, QXP, Tree.from_list([dp, d, np])),
+    ([qdp, qn], np, QXP, Tree.from_list([dp, d, np])),
+    ([qdp, qnbar], np, QXP, Tree.from_list([dp, d, [np, n, 1]])),
     ([QXP, qn], np, QXP, Tree.from_list([dp, 0, [dbar, d, np]])),
     ([QXP, qnbar], np, QXP, Tree.from_list([dp, 0, [dbar, d, [np, n, 1]]]))
 ])
@@ -125,4 +128,4 @@ if __name__ == '__main__':
               tts.gb_np_d_n,
               tts.gb_simple_trans_clause,
               tts.gb_pp_comp_cp_comp]:
-        print(gb_to_min.transform(t))
+        print(gb_to_min.transform(t, debug=True))
