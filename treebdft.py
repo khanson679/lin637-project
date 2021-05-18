@@ -46,6 +46,8 @@ class TreeBDFT:
 
     @staticmethod
     def _sub_variables(varleaftree, trees):
+        """Replace variables in variably leafed tree with trees with the
+        output subtrees of a node's children."""
         if isinstance(varleaftree.data, int):
             return trees[varleaftree.data]
         elif varleaftree.depth() == 0:

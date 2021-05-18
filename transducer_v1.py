@@ -2,6 +2,8 @@
 
 """
 Definitions of GB and Minimalist tree grammars and transducers.
+
+This file defines an extremely minimal transducer with manually specified transitions.
 """
 
 from tree import Tree

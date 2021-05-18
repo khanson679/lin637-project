@@ -2,15 +2,22 @@
 
 """
 Definitions of GB and Minimalist tree grammars and transducers.
+
+This file uses loops to programmatically generate structurally identical
+sets of transitions for each lexical category.
 """
 
 from tree import Tree
 from treebdft import TreeBDFT
 import test_trees as tts
 
+#
 # data to intialize TreeBDFT
+#
 # transitions added later will replace conflicting transitions added earlier
 #  when the list is converted to a dictionary
+#
+
 states = []
 alph = []
 finals = []
@@ -128,4 +135,4 @@ if __name__ == '__main__':
               tts.gb_np_d_n,
               tts.gb_simple_trans_clause,
               tts.gb_pp_comp_cp_comp]:
-        print(gb_to_min.transform(t, debug=True))
+        print(gb_to_min.transform(t))

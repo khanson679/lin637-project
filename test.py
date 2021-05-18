@@ -2,7 +2,8 @@
 # -*- coding: utf-8 -*-
 
 """
-Unit tests for Tree and TreeBDFA.
+Unit tests for Tree, TreeBDFA, TreeBDFT, GB and Minimalist grammars,
+GB to Minimalist transducer.
 """
 
 import unittest

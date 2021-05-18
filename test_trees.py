@@ -1,5 +1,9 @@
 from tree import Tree
 
+"""
+Predefined trees used to test grammars and transducers.
+"""
+
 gb_xp_singleton = Tree.from_list(["XP", ["X'", "X"]])
 gb_xp_w_comp = Tree.from_list(["XP", ["X'", "X", ["YP", ["Y'", "Y"]]]])
 gb_xp_w_comp_spec = Tree.from_list(

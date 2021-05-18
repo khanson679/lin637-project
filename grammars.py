@@ -110,7 +110,7 @@ def test_gb():
 
 def test_minimalist():
     # print(minimalist_grammar)
-    t1 = test_trees.min_dp_leaf
+    t1 = test_trees.min_dp_d
     t2 = test_trees.min_dp_d_n
     t3 = test_trees.min_simple_trans_clause
     for t in [t1, t2, t3]:
